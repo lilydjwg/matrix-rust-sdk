@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["matrix_sdk_crypto"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html\" title=\"trait core::convert::TryInto\">TryInto</a>&lt;ToDeviceForwardedRoomKeyEventContent&gt; for <a class=\"struct\" href=\"matrix_sdk_crypto/olm/struct.ExportedRoomKey.html\" title=\"struct matrix_sdk_crypto::olm::ExportedRoomKey\">ExportedRoomKey</a>","synthetic":false,"types":["matrix_sdk_crypto::olm::group_sessions::ExportedRoomKey"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

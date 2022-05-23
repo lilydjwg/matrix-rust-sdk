@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["matrix_sdk_base"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html\" title=\"trait core::hash::Hash\">Hash</a> for <a class=\"struct\" href=\"matrix_sdk_base/struct.Session.html\" title=\"struct matrix_sdk_base::Session\">Session</a>","synthetic":false,"types":["matrix_sdk_base::session::Session"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

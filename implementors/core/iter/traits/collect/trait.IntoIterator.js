@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["matrix_sdk_crypto"] = [{"text":"impl&lt;'a&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/iter/traits/collect/trait.IntoIterator.html\" title=\"trait core::iter::traits::collect::IntoIterator\">IntoIterator</a> for &amp;'a <a class=\"struct\" href=\"matrix_sdk_crypto/struct.MasterPubkey.html\" title=\"struct matrix_sdk_crypto::MasterPubkey\">MasterPubkey</a>","synthetic":false,"types":["matrix_sdk_crypto::identities::user::MasterPubkey"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

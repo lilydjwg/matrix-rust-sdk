@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["sled_state_inspector"] = [{"text":"impl <a class=\"trait\" href=\"https://docs.rs/rustyline/9.1.2/rustyline/completion/trait.Completer.html\" title=\"trait rustyline::completion::Completer\">Completer</a> for <a class=\"struct\" href=\"sled_state_inspector/struct.InspectorHelper.html\" title=\"struct sled_state_inspector::InspectorHelper\">InspectorHelper</a>","synthetic":false,"types":["sled_state_inspector::InspectorHelper"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

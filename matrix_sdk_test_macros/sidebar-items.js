@@ -1,0 +1,1 @@
+initSidebarItems({"attr":[["async_test","Attribute to use `wasm_bindgen_test` for wasm32 targets and `tokio::test` for everything else with async-support and custom result-types"]]});

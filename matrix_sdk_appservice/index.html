@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Matrix Application Service library"><meta name="keywords" content="rust, rustlang, rust-lang, matrix_sdk_appservice"><title>matrix_sdk_appservice - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../dark.css" disabled><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script>
+    <noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../matrix_sdk_appservice/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../matrix_sdk_appservice/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Crate matrix_sdk_appservice</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.1.0</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><section><div class="block"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#types">Type Definitions</a></li></ul></div></section><div id="sidebar-vars" data-name="matrix_sdk_appservice" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../matrix_sdk_appservice/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">matrix_sdk_appservice</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/matrix_sdk_appservice/lib.rs.html#15-612">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Matrix <a href="https://matrix.org/docs/spec/application_service/r0.1.2">Application Service</a> library</p>
+<p>The appservice crate aims to provide a batteries-included experience by
+being a thin wrapper around the <a href="../matrix_sdk/index.html" title="matrix_sdk"><code>matrix_sdk</code></a>. That means that we</p>
+<ul>
+<li>ship with functionality to configure your webserver crate or simply run
+the webserver for you</li>
+<li>receive and validate requests from the homeserver correctly</li>
+<li>allow calling the homeserver with proper virtual user identity assertion</li>
+<li>have consistent room state by leveraging matrix-sdk’s state store</li>
+<li>provide E2EE support by leveraging matrix-sdk’s crypto store</li>
+</ul>
+<h2 id="status"><a href="#status">Status</a></h2>
+<p>The crate is in an experimental state. Follow
+<a href="https://github.com/matrix-org/matrix-rust-sdk/issues/228">matrix-org/matrix-rust-sdk#228</a> for progress.</p>
+<h2 id="quickstart"><a href="#quickstart">Quickstart</a></h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">matrix_sdk_appservice</span>::{
+    <span class="ident">ruma::events::room::member::SyncRoomMemberEvent</span>,
+    <span class="ident">AppService</span>, <span class="ident">AppServiceRegistration</span>
+};
+
+<span class="kw">let</span> <span class="ident">homeserver_url</span> <span class="op">=</span> <span class="string">&quot;http://127.0.0.1:8008&quot;</span>;
+<span class="kw">let</span> <span class="ident">server_name</span> <span class="op">=</span> <span class="string">&quot;localhost&quot;</span>;
+<span class="kw">let</span> <span class="ident">registration</span> <span class="op">=</span> <span class="ident">AppServiceRegistration::try_from_yaml_str</span>(
+    <span class="string">r&quot;
+        id: appservice
+        url: http://127.0.0.1:9009
+        as_token: as_token
+        hs_token: hs_token
+        sender_localpart: _appservice
+        namespaces:
+          users:
+          - exclusive: true
+            regex: &#39;@_appservice_.*&#39;
+    &quot;</span>)<span class="question-mark">?</span>;
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">appservice</span> <span class="op">=</span> <span class="ident">AppService::new</span>(<span class="ident">homeserver_url</span>, <span class="ident">server_name</span>, <span class="ident">registration</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+<span class="ident">appservice</span>.<span class="ident">register_event_handler</span>(<span class="op">|</span><span class="ident">_ev</span>: <span class="ident">SyncRoomMemberEvent</span><span class="op">|</span> <span class="kw">async</span> {
+    <span class="comment">// do stuff</span>
+});
+
+<span class="kw">let</span> (<span class="ident">host</span>, <span class="ident">port</span>) <span class="op">=</span> <span class="ident">appservice</span>.<span class="ident">registration</span>().<span class="ident">get_host_and_port</span>()<span class="question-mark">?</span>;
+<span class="ident">appservice</span>.<span class="ident">run</span>(<span class="ident">host</span>, <span class="ident">port</span>).<span class="kw">await</span><span class="question-mark">?</span>;</code></pre></div>
+<p>Check the <a href="https://github.com/matrix-org/matrix-rust-sdk/tree/main/crates/matrix-sdk-appservice/examples">examples directory</a> for fully working examples.</p>
+</div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left import-item" id="reexport.matrix_sdk"><code>pub use <a class="mod" href="../matrix_sdk/index.html" title="mod matrix_sdk">matrix_sdk</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item" id="reexport.ruma"><code>pub use matrix_sdk::<a class="mod" href="https://docs.rs/ruma/0.6.3/ruma/index.html" title="mod ruma">ruma</a>;</code></div><div class="item-right docblock-short"></div></div></div><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="event_handler/index.html" title="matrix_sdk_appservice::event_handler mod">event_handler</a></div><div class="item-right docblock-short"></div></div></div><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.AppService.html" title="matrix_sdk_appservice::AppService struct">AppService</a></div><div class="item-right docblock-short"><p>AppService</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.AppServiceRegistration.html" title="matrix_sdk_appservice::AppServiceRegistration struct">AppServiceRegistration</a></div><div class="item-right docblock-short"><p>AppService Registration</p>
+</div></div></div><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.Error.html" title="matrix_sdk_appservice::Error enum">Error</a></div><div class="item-right docblock-short"></div></div></div><h2 id="types" class="small-section-header"><a href="#types">Type Definitions</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="type" href="type.Host.html" title="matrix_sdk_appservice::Host type">Host</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="type" href="type.MainUser.html" title="matrix_sdk_appservice::MainUser type">MainUser</a></div><div class="item-right docblock-short"><p>The <code>localpart</code> of the user associated with the application service via
+<code>sender_localpart</code> in <a href="struct.AppServiceRegistration.html" title="AppServiceRegistration"><code>AppServiceRegistration</code></a>.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="type" href="type.Port.html" title="matrix_sdk_appservice::Port type">Port</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="type" href="type.Result.html" title="matrix_sdk_appservice::Result type">Result</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="type" href="type.VirtualUser.html" title="matrix_sdk_appservice::VirtualUser type">VirtualUser</a></div><div class="item-right docblock-short"><p>The application service may specify the virtual user to act as through use
+of a user_id query string parameter on the request. The user specified in
+the query string must be covered by one of the <a href="struct.AppServiceRegistration.html" title="AppServiceRegistration"><code>AppServiceRegistration</code></a>’s
+<code>users</code> namespaces.</p>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="matrix_sdk_appservice" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (b2eed72a6 2022-05-22)" ></div>
+</body></html>
